@@ -1,5 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except:[:index, :show]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -14,7 +15,7 @@ class CampaignsController < ApplicationController
 
   # GET /campaigns/new
   def new
-    @campaign = Campaign.new
+    @campaign = current_user.campaigns.build
   end
 
   # GET /campaigns/1/edit
@@ -24,7 +25,7 @@ class CampaignsController < ApplicationController
   # POST /campaigns
   # POST /campaigns.json
   def create
-    @campaign = Campaign.new(campaign_params)
+    @campaign = current_user.campaigns.build(campaign_params)
 
     respond_to do |format|
       if @campaign.save

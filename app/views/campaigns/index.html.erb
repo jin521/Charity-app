@@ -17,13 +17,11 @@
         <td><%= campaign.name %></td>
         <td><%= campaign.description %></td>
         <td><%= link_to 'Show', campaign %></td>
-        <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-        <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if campaign.user == current_user %>
+          <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
+          <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Campaign', new_campaign_path %>
