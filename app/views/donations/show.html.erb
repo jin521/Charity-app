@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Campaign:</strong>
+  <%= @donation.campaign_id %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @donation.email %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @donation.amount %>
+</p>
+
+<p>
+  <strong>Credit card details:</strong>
+  <%= @donation.credit_card_details %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @donation.user %>
+</p>
+
+<%= link_to 'Edit', edit_donation_path(@donation) %> |
+<%= link_to 'Back', donations_path %>

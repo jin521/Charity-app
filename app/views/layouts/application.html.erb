@@ -11,18 +11,23 @@
 	<header class="navbar navbar-default" role="navigation">
     <div class="navbar-inner">
       <div class="container">
-
         <nav class="collapse navbar-collapse navbar-ex1-collapse">
         	<% if user_signed_in? -%>
 						<ul class="nav navbar-nav navbar-right">
-							<li><%= link_to 'New Campaign', new_campaign_path %></li>
+              <li><%= link_to 'Donate', new_donation_path %></li>
 							<li><%= link_to 'Account', edit_user_registration_path %></li>
 							<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
 						</ul>
+            <% elsif admin_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'New Campaign', new_campaign_path %></li>
+              <li><%= link_to 'Sign out', destroy_admin_session_path, :method => :delete %></li>
+            </ul>
 					<% else -%>
 						<ul class="nav navbar-nav pull-right">
 							<li><%= link_to 'Sign up', new_user_registration_path %></li>
-							<li><%= link_to 'Sign in', new_user_session_path %></li>
+							<li><%= link_to 'Sign in as a Donor', new_user_session_path %></li>
+              <li><%= link_to 'Sign in as Charity', new_admin_session_path %></li>
 						</ul>
 					<% end -%>
         </nav>

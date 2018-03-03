@@ -1,31 +1,24 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except:[:index, :show]
+  before_action :authenticate_admin!, except:[:index, :show]
 
-  # GET /campaigns
-  # GET /campaigns.json
   def index
     @campaigns = Campaign.all
+    @donations_total = @campaigns.map{|campaign| campaign.donations.inject(0){|sum, d| sum + d.amount }}
   end
 
-  # GET /campaigns/1
-  # GET /campaigns/1.json
   def show
   end
 
-  # GET /campaigns/new
   def new
-    @campaign = current_user.campaigns.build
+    @campaign = admin.campaigns.build
   end
 
-  # GET /campaigns/1/edit
   def edit
   end
 
-  # POST /campaigns
-  # POST /campaigns.json
   def create
-    @campaign = current_user.campaigns.build(campaign_params)
+    @campaign = admin.campaigns.build(campaign_params)
 
     respond_to do |format|
       if @campaign.save
@@ -38,8 +31,6 @@ class CampaignsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /campaigns/1
-  # PATCH/PUT /campaigns/1.json
   def update
     respond_to do |format|
       if @campaign.update(campaign_params)
@@ -52,8 +43,6 @@ class CampaignsController < ApplicationController
     end
   end
 
-  # DELETE /campaigns/1
-  # DELETE /campaigns/1.json
   def destroy
     @campaign.destroy
     respond_to do |format|
@@ -63,7 +52,6 @@ class CampaignsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_campaign
       @campaign = Campaign.find(params[:id])
     end

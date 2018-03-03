@@ -7,19 +7,21 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
+      <th>Donations</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @campaigns.each do |campaign| %>
+    <% @campaigns.each_with_index do |campaign, index| %>
       <tr>
         <td><%= campaign.name %></td>
         <td><%= campaign.description %></td>
+        <td><%= @donations_total[index]%></td>
         <td><%= link_to 'Show', campaign %></td>
-        <% if campaign.user == current_user %>
+        <% if admin_signed_in? %>
           <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-          <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
