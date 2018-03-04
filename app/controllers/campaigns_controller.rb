@@ -8,6 +8,8 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    @donation = Donation.new
+    @donation.campaign = @campaign
   end
 
   def new

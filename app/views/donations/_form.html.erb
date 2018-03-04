@@ -1,20 +1,8 @@
 
 <%= form_for(@donation) do |f| %>
-  <% if @donation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this link from being saved:</h2>
-
-      <ul>
-      <% @donation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="form-group">
-    <%= f.label :campaign_id %><br>
-    <%= f.text_field :campaign_id, class: "form-control" %>
+    <%= f.hidden_field :campaign_id, :value => @donation.campaign_id %>
   </div>
   <div class="form-group">
     <%= f.label :amount %><br>

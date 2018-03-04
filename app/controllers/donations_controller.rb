@@ -2,17 +2,18 @@ class DonationsController < ApplicationController
   before_action :set_donation, only: [:show, :edit, :update, :destroy]
 
   def show
-
+    @campaign_name = Campaign.find(@donation.campaign_id).name
   end
 
   def new
     @donation = current_user.donations.build
-    @campaign = @donation.campaign_id
+    campaign = Campaign.find(params[:format])
+    @donation.campaign = campaign
   end
 
   def create
-    @campaign = Campaign.find(params[:campaign_id])
-    @donation = @campaign.Donations.new(donation_params)
+    @campaign = Campaign.find(donation_params[:campaign_id])
+    @donation = Donation.new(donation_params)
     @donation.user = current_user
 
     respond_to do |format|
@@ -29,7 +30,7 @@ class DonationsController < ApplicationController
   def destroy
     @donation.destroy
     respond_to do |format|
-      format.html { redirect_to donations_url, notice: 'Donation was successfully destroyed.' }
+      format.html { redirect_to donations_url, notice: 'Donation was successfully deleted.' }
       format.json { head :no_content }
     end
   end

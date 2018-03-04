@@ -9,12 +9,13 @@
 </br>
   <%= @campaign.description %>
 </p>
+<% if user_signed_in? %>
+  <%= render 'donations/form', donation: @donation %>
+<% end %>
 <div class="btn-group">
   <% if admin_signed_in? %>
     <%= link_to 'Edit', edit_campaign_path(@campaign), class: "btn btn-default" %>
   <% end %>
   <%= link_to 'Back', campaigns_path, class: "btn btn-default" %>
-  <% if user_signed_in? %>
-    <%= link_to 'Donate to this Campaign', new_donation_path(@campaign), class: "btn btn-primary" %>
-  <% end %>
+
 </div>

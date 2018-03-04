@@ -1,29 +1,8 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Campaign:</strong>
-  <%= @donation.campaign_id %>
-</p>
+<h1>Thank you for this Donation</h1>
 
-<p>
-  <strong>Email:</strong>
-  <%= @donation.email %>
-</p>
+<p> you donated <%= @donation.amount %> to <%= @campaign_name %></p>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @donation.amount %>
-</p>
-
-<p>
-  <strong>Credit card details:</strong>
-  <%= @donation.credit_card_details %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @donation.user %>
-</p>
-
-<%= link_to 'Edit', edit_donation_path(@donation) %> |
-<%= link_to 'Back', donations_path %>
+<div class="btn-group">
+  <%= link_to 'Back to Campaigns', campaigns_path, class:"btn btn-default" %>
+</div>
