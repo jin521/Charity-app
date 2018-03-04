@@ -36,8 +36,10 @@ Create an account for new user or login for an existing user.
 
 You can browse the site as a guest, but to make a donation you must login in.
 
-Nice to have:
+#### Nice to have:
+
 Below listed are the features I would like to implement further to  to make it an usable product:
+
 - Implement Payment system with Stripe
 - Implementing the Luhn check for credit card number validation
 - Better Styling
