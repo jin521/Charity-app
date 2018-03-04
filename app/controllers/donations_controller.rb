@@ -7,6 +7,7 @@ class DonationsController < ApplicationController
 
   def new
     @donation = current_user.donations.build
+    @campaign = @donation.campaign_id
   end
 
   def create

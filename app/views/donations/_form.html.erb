@@ -1,42 +1,31 @@
-<%= form_with(model: donation, local: true) do |form| %>
-  <% if donation.errors.any? %>
+
+<%= form_for(@donation) do |f| %>
+  <% if @donation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
+      <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this link from being saved:</h2>
 
       <ul>
-      <% donation.errors.full_messages.each do |message| %>
+      <% @donation.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :campaign_id %>
-    <%= form.number_field :campaign_id, id: :donation_campaign_id %>
+  <div class="form-group">
+    <%= f.label :campaign_id %><br>
+    <%= f.text_field :campaign_id, class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_area :email, id: :donation_email %>
+  <div class="form-group">
+    <%= f.label :amount %><br>
+    <%= f.text_field :amount, class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount, id: :donation_amount %>
+  <div class="form-group">
+    <%= f.label :credit_card_details %><br>
+    <%= f.text_field :credit_card_details, class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= form.label :credit_card_details %>
-    <%= form.text_area :credit_card_details, id: :donation_credit_card_details %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :donation_user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <br>
+  <div class="form-group">
+    <%= f.submit "Donate", class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>

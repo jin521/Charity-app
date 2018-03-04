@@ -2,5 +2,7 @@
 
 <%= render 'form', campaign: @campaign %>
 
-<%= link_to 'Show', @campaign %> |
-<%= link_to 'Back', campaigns_path %>
+<div class="btn-group">
+  <%= link_to 'Show', @campaign, class:"btn btn-default" %>
+  <%= link_to 'Back', campaigns_path, class:"btn btn-default" %>
+</div>

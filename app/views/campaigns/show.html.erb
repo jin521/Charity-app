@@ -1,15 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1>
+    <%= @campaign.name %>
+  </h1>
+</div>
 
 <p>
-  <strong>Name:</strong>
-  <%= @campaign.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
+  <h4>Description</h4>
+</br>
   <%= @campaign.description %>
 </p>
-
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %> |
-<%= link_to 'Donate to this Campaign', new_donation_path(@campaign) %>
+<div class="btn-group">
+  <% if admin_signed_in? %>
+    <%= link_to 'Edit', edit_campaign_path(@campaign), class: "btn btn-default" %>
+  <% end %>
+  <%= link_to 'Back', campaigns_path, class: "btn btn-default" %>
+  <% if user_signed_in? %>
+    <%= link_to 'Donate to this Campaign', new_donation_path(@campaign), class: "btn btn-primary" %>
+  <% end %>
+</div>
